@@ -4,6 +4,24 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeTabs();
     createAllCharts();
     createTariffTimeline();
+function updateLiveTime() {
+    const now = new Date();
+    const options = {
+        year: "numeric",
+        month: "short",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+        timeZone: "Asia/Kolkata"
+    };
+    const formatted = now.toLocaleString('en-IN', options).replace(',', '');
+    document.getElementById('liveTime').textContent = "Live • " + formatted + " IST";
+}
+
+// Call immediately, then update every minute
+updateLiveTime();
+setInterval(updateLiveTime, 60000);
 });
 
 // Application Data - Updated with 2025-only timeline
