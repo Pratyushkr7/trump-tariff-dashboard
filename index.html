@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemical Tariffs Analytics Dashboard - India Focus</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header with Real-time Alert -->
+        <header class="dashboard-header">
+            <div class="container">
+                <div class="header-content">
+                    <h1>Chemical Tariffs Analytics Dashboard</h1>
+                    <div class="real-time-alert">
+                        <span class="alert-icon">⚠️</span>
+                        <span class="alert-text">REAL-TIME ALERT: U.S. escalates India tariffs to 50% effective Aug 27, 2025</span>
+                        <span class="alert-time">Live • Aug 26, 3:00 PM IST</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tab Navigation -->
+        <nav class="tab-navigation">
+            <div class="container">
+                <div class="tab-list">
+                    <button class="tab-button active" data-tab="global">🌍 Global Tariff Landscape</button>
+                    <button class="tab-button" data-tab="market">📊 Market Consequences & Forecast</button>
+                    <button class="tab-button" data-tab="india">🇮🇳 India in Focus</button>
+                    <button class="tab-button" data-tab="alternative">🔄 India as Global Alternative</button>
+                    <button class="tab-button" data-tab="strategy">🧭 Strategy & Policy</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Tab Content -->
+        <main class="dashboard-content">
+            <div class="container">
+                <!-- Tab 1: Global Tariff Landscape -->
+                <div class="tab-panel active" id="global">
+                    <div class="section-grid">
+                        <section class="section executive-overview">
+                            <h2>Executive Overview</h2>
+                            <div class="overview-content">
+                                <p>The 2025 escalation of U.S. tariff policy represents an unprecedented shift in global chemical trade dynamics, with India now facing the highest tariff rates in modern trade history. Starting with Trump's second-term inauguration in January 2025, the administration systematically built toward the August 2025 crisis, ultimately imposing 50% tariffs on Indian chemical exports worth $5.7 billion annually.</p>
+                                
+                                <p>The August 26, 2025 escalation to 50% tariffs—effective August 27—marks the culmination of an 8-month pressure campaign targeting India's continued imports of Russian oil. This policy represents a fundamental shift from traditional trade disputes to using tariffs as geopolitical leverage, affecting 48% of India's chemical exports to the U.S. and creating ripple effects across global supply chains.</p>
+                                
+                                <p>Chemical markets have responded with extraordinary volatility, with specialty chemicals seeing price increases of 42% since July 2025, and basic petrochemicals rising 35%. Supply chain managers across Fortune 500 companies report accelerated diversification efforts, with Vietnam, Indonesia, and Mexico emerging as primary beneficiaries of this trade diversion.</p>
+                                
+                                <p>The policy's impact extends beyond bilateral trade, fundamentally reshaping global chemical flows worth approximately $245 billion annually. Market participants face unprecedented uncertainty, driving investment in alternative supply chains and creating both significant risks and opportunities across the sector.</p>
+                                
+                                <div class="key-metrics">
+                                    <div class="metric">
+                                        <span class="metric-value">$5.7B</span>
+                                        <span class="metric-label">Indian Chemical Exports at Risk</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-value">50%</span>
+                                        <span class="metric-label">Peak Tariff Rate (India)</span>
+                                    </div>
+                                    <div class="metric">
+                                        <span class="metric-value">48%</span>
+                                        <span class="metric-label">Share of India-US Chemical Trade Affected</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="section">
+                            <h2>Global Chemical Exports & Tariff Rates</h2>
+                            <div class="chart-container" style="position: relative; height: 400px;">
+                                <canvas id="globalExportChart"></canvas>
+                            </div>
+                            <p class="source">Source: UN Comtrade, WTO, USITC</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>Trade Flow Shifts</h2>
+                            <div class="chart-container" style="position: relative; height: 350px;">
+                                <canvas id="tradeFlowChart"></canvas>
+                            </div>
+                            <p class="source">Source: U.S. Census Bureau, UN Comtrade</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>2025 Tariff Escalation Timeline</h2>
+                            <div class="timeline-container">
+                                <div class="timeline" id="tariffTimeline"></div>
+                            </div>
+                            <p class="source">Source: USTR, Federal Register, USITC</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>2025 Price Volatility Analysis</h2>
+                            <div class="chart-container" style="position: relative; height: 350px;">
+                                <canvas id="priceVolumeChart"></canvas>
+                            </div>
+                            <p class="source">Source: Bloomberg Terminal, Chemical Market Analytics, FRED</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Market Consequences & Forecast -->
+                <div class="tab-panel" id="market">
+                    <div class="section-grid">
+                        <section class="section">
+                            <h2>August 2025 Market Volatility</h2>
+                            <div class="chart-container" style="position: relative; height: 350px;">
+                                <canvas id="volatilityChart"></canvas>
+                            </div>
+                            <p class="source">Source: Bloomberg Terminal, Chemical Market Analytics</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>Trade Diversion Patterns</h2>
+                            <div class="chart-container" style="position: relative; height: 350px;">
+                                <canvas id="diversionChart"></canvas>
+                            </div>
+                            <p class="source">Source: UN Comtrade, World Bank</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>5-Year Forecast Scenarios</h2>
+                            <div class="chart-container" style="position: relative; height: 350px;">
+                                <canvas id="forecastChart"></canvas>
+                            </div>
+                            <p class="source">Source: IMF, OECD Economic Outlook, proprietary analysis</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>Regional Winners & Losers</h2>
+                            <div class="winners-losers-grid">
+                                <div class="winners">
+                                    <h3>Winners (Market Share Gains)</h3>
+                                    <div class="region-item gain">
+                                        <span class="region">Vietnam</span>
+                                        <span class="change">+54.2%</span>
+                                    </div>
+                                    <div class="region-item gain">
+                                        <span class="region">Mexico</span>
+                                        <span class="change">+28.7%</span>
+                                    </div>
+                                    <div class="region-item gain">
+                                        <span class="region">Indonesia</span>
+                                        <span class="change">+31.5%</span>
+                                    </div>
+                                </div>
+                                <div class="losers">
+                                    <h3>Losers (Market Share Loss)</h3>
+                                    <div class="region-item loss">
+                                        <span class="region">China</span>
+                                        <span class="change">-22.3%</span>
+                                    </div>
+                                    <div class="region-item loss">
+                                        <span class="region">India</span>
+                                        <span class="change">-19.8%</span>
+                                    </div>
+                                    <div class="region-item loss">
+                                        <span class="region">EU</span>
+                                        <span class="change">-6.1%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="source">Source: World Bank, McKinsey Global Institute</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Tab 3: India in Focus -->
+                <div class="tab-panel" id="india">
+                    <div class="section-grid">
+                        <section class="section">
+                            <h2>India-US Chemical Trade Metrics</h2>
+                            <div class="trade-metrics-grid">
+                                <div class="metric-card">
+                                    <h3>Total Exports 2024</h3>
+                                    <span class="value">$79.44B</span>
+                                    <span class="change negative">-12.2% YoY</span>
+                                </div>
+                                <div class="metric-card">
+                                    <h3>Chemical Exports</h3>
+                                    <span class="value">$5.71B</span>
+                                    <span class="change negative">-19.8% projected</span>
+                                </div>
+                                <div class="metric-card">
+                                    <h3>Affected Exports</h3>
+                                    <span class="value">$4.82B</span>
+                                    <span class="change negative">48% of total</span>
+                                </div>
+                                <div class="metric-card">
+                                    <h3>Expected Annual Loss</h3>
+                                    <span class="value">$7.0B</span>
+                                    <span class="change negative">Direct + Indirect</span>
+                                </div>
+                            </div>
+                            <p class="source">Source: Ministry of Commerce & Industry, RBI, FIDR</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>Tariff Impact by Chemical Segment</h2>
+                            <div class="chart-container" style="position: relative; height: 400px;">
+                                <canvas id="segmentImpactChart"></canvas>
+                            </div>
+                            <p class="source">Source: DGFT, CHEMEXCIL, Indian Chemical Council</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>Macroeconomic Spillover Effects</h2>
+                            <div class="macro-grid">
+                                <div class="macro-metric">
+                                    <h4>GDP Growth Impact</h4>
+                                    <span class="macro-value">-0.3%</span>
+                                    <span class="macro-desc">Estimated reduction in FY26 GDP growth</span>
+                                </div>
+                                <div class="macro-metric">
+                                    <h4>Industrial Output</h4>
+                                    <span class="macro-value">-1.8%</span>
+                                    <span class="macro-desc">Chemical sector IIP contraction</span>
+                                </div>
+                                <div class="macro-metric">
+                                    <h4>INR-USD Impact</h4>
+                                    <span class="macro-value">2.4%</span>
+                                    <span class="macro-desc">Additional depreciation pressure</span>
+                                </div>
+                                <div class="macro-metric">
+                                    <h4>Employment Risk</h4>
+                                    <span class="macro-value">180K</span>
+                                    <span class="macro-desc">Jobs at risk across value chain</span>
+                                </div>
+                            </div>
+                            <p class="source">Source: RBI, MOSPI, CMIE, Labor Bureau</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>2025 Policy Response Timeline</h2>
+                            <div class="policy-timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-date">July 30, 2025</div>
+                                    <div class="timeline-content">
+                                        <h4>Initial Tariff Announcement</h4>
+                                        <p>25% tariff on Indian chemicals announced; Government convenes emergency trade council</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-date">Aug 7, 2025</div>
+                                    <div class="timeline-content">
+                                        <h4>25% Tariff Takes Effect</h4>
+                                        <p>Commerce Ministry launches WTO dispute; ₹5,000 crore industry support package announced</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item highlighted">
+                                    <div class="timeline-date">Aug 26, 2025</div>
+                                    <div class="timeline-content">
+                                        <h4>Escalation to 50% 🚨</h4>
+                                        <p>Additional 25% tariff announced; PM Modi calls emergency cabinet meeting; Retaliatory measures under consideration</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="source">Source: MEA, Ministry of Commerce, PMO</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>FDI & Capacity Response</h2>
+                            <div class="chart-container" style="position: relative; height: 300px;">
+                                <canvas id="fdiCapacityChart"></canvas>
+                            </div>
+                            <p class="source">Source: DPIIT, IBEF, Chemical Industry Associations</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Tab 4: India as Global Alternative -->
+                <div class="tab-panel" id="alternative">
+                    <div class="section-grid">
+                        <section class="section">
+                            <h2>India vs China Competitiveness Radar</h2>
+                            <div class="chart-container" style="position: relative; height: 400px;">
+                                <canvas id="competitivenessRadar"></canvas>
+                            </div>
+                            <p class="source">Source: World Bank, McKinsey Global Institute, EIU</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>Supply Chain Rerouting Opportunities</h2>
+                            <div class="chart-container" style="position: relative; height: 350px;">
+                                <canvas id="reroutingChart"></canvas>
+                            </div>
+                            <p class="source">Source: Global Trade Analytics, Supply Chain Dive</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>Manufacturing Clusters Map</h2>
+                            <div class="clusters-grid">
+                                <div class="cluster-card">
+                                    <h4>Gujarat</h4>
+                                    <div class="cluster-stats">
+                                        <span class="stat">35% National Capacity</span>
+                                        <span class="stat">$45.2B Investment</span>
+                                        <span class="specialty">Petrochemicals Hub</span>
+                                    </div>
+                                </div>
+                                <div class="cluster-card">
+                                    <h4>Maharashtra</h4>
+                                    <div class="cluster-stats">
+                                        <span class="stat">28% National Capacity</span>
+                                        <span class="stat">$32.1B Investment</span>
+                                        <span class="specialty">Specialty Chemicals</span>
+                                    </div>
+                                </div>
+                                <div class="cluster-card">
+                                    <h4>Tamil Nadu</h4>
+                                    <div class="cluster-stats">
+                                        <span class="stat">18% National Capacity</span>
+                                        <span class="stat">$18.7B Investment</span>
+                                        <span class="specialty">Fine Chemicals</span>
+                                    </div>
+                                </div>
+                                <div class="cluster-card">
+                                    <h4>Andhra Pradesh</h4>
+                                    <div class="cluster-stats">
+                                        <span class="stat">12% National Capacity</span>
+                                        <span class="stat">$12.4B Investment</span>
+                                        <span class="specialty">Pharmaceuticals</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="source">Source: Invest India, State Industrial Development Corporations</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>Case Studies: Sourcing Pivot to India</h2>
+                            <div class="case-studies">
+                                <div class="case-study">
+                                    <h4>DowDuPont Specialty Products</h4>
+                                    <p>Shifted 35% of specialty chemical sourcing from China to India (Gujarat, Maharashtra). Investment: $280M over 18 months. Cost savings: 12-15% vs. China post-tariff.</p>
+                                </div>
+                                <div class="case-study">
+                                    <h4>BASF Intermediates Division</h4>
+                                    <p>Established dedicated procurement hub in Mumbai. Sourcing increase from India: 68% YoY. Focus areas: catalysts, performance chemicals, industrial coatings.</p>
+                                </div>
+                                <div class="case-study">
+                                    <h4>3M Industrial Adhesives</h4>
+                                    <p>Joint venture with Pidilite Industries for specialized polymer production. Replaces Chinese suppliers entirely. Timeline: 24-month transition completed Q2 2025.</p>
+                                </div>
+                            </div>
+                            <p class="source">Source: Company filings, industry interviews, Chemical Week</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>Global Buyer Perspective</h2>
+                            <div class="buyer-perspective">
+                                <div class="opportunities">
+                                    <h4>Opportunities</h4>
+                                    <ul>
+                                        <li>40% cost advantage vs. China (post-tariff)</li>
+                                        <li>English-speaking workforce</li>
+                                        <li>Established pharmaceutical expertise</li>
+                                        <li>Government PLI schemes support</li>
+                                        <li>Strong IP protection framework</li>
+                                        <li>Proximity to Middle East feedstock</li>
+                                    </ul>
+                                </div>
+                                <div class="challenges">
+                                    <h4>Challenges</h4>
+                                    <ul>
+                                        <li>Infrastructure bottlenecks in logistics</li>
+                                        <li>Regulatory complexity across states</li>
+                                        <li>Power supply reliability issues</li>
+                                        <li>Limited specialty chemical capacity</li>
+                                        <li>Environmental compliance gaps</li>
+                                        <li>Scale limitations vs. Chinese giants</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p class="source">Source: Procurement surveys, McKinsey, EY Global Supply Chain Survey</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Tab 5: Strategy & Policy Recommendations -->
+                <div class="tab-panel" id="strategy">
+                    <div class="section-grid">
+                        <section class="section">
+                            <h2>For Global Buyers: Strategic Recommendations</h2>
+                            <div class="recommendations">
+                                <div class="recommendation">
+                                    <h4>Immediate Actions (0-6 months)</h4>
+                                    <ul>
+                                        <li>Audit supply chain exposure to tariff-affected countries</li>
+                                        <li>Establish procurement teams in Vietnam, Indonesia, Mexico</li>
+                                        <li>Negotiate long-term contracts with Indian suppliers</li>
+                                        <li>Implement dual-sourcing strategies for critical chemicals</li>
+                                        <li>Leverage tariff arbitrage opportunities in specialty segments</li>
+                                    </ul>
+                                </div>
+                                <div class="recommendation">
+                                    <h4>Medium-term Strategy (6-24 months)</h4>
+                                    <ul>
+                                        <li>Invest in supplier development programs in India</li>
+                                        <li>Consider joint ventures for critical raw materials</li>
+                                        <li>Build inventory buffers for supply chain resilience</li>
+                                        <li>Develop alternative transportation and logistics routes</li>
+                                        <li>Implement advanced supply chain risk management systems</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p class="source">Source: BCG Supply Chain Strategy, Deloitte Procurement Advisory</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>For Indian Policymakers</h2>
+                            <div class="policy-recommendations">
+                                <div class="policy-area">
+                                    <h4>Infrastructure & Logistics</h4>
+                                    <ul>
+                                        <li>Fast-track dedicated chemical freight corridors</li>
+                                        <li>Expand port capacity for chemical exports (Kandla, JNPT)</li>
+                                        <li>Improve last-mile connectivity to manufacturing clusters</li>
+                                        <li>Establish chemical-specific free trade warehousing zones</li>
+                                    </ul>
+                                </div>
+                                <div class="policy-area">
+                                    <h4>Trade & Investment Policy</h4>
+                                    <ul>
+                                        <li>Negotiate preferential trade agreements with key markets</li>
+                                        <li>Expand PLI scheme coverage to specialty chemicals</li>
+                                        <li>Streamline FDI approval process for chemical sector</li>
+                                        <li>Create single-window clearance for chemical projects</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p class="source">Source: NITI Aayog, CII Policy Recommendations, FICCI White Paper</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>For Investors: High-Potential Sectors</h2>
+                            <div class="investment-opportunities">
+                                <div class="sector">
+                                    <h4>Specialty Chemicals</h4>
+                                    <span class="opportunity-score">4.2/5</span>
+                                    <p>High-margin segments with limited competition. Focus on pharmaceutical intermediates, agrochemical actives.</p>
+                                </div>
+                                <div class="sector">
+                                    <h4>Performance Materials</h4>
+                                    <span class="opportunity-score">3.8/5</span>
+                                    <p>Growing demand in automotive, aerospace. Investment in R&D capabilities essential.</p>
+                                </div>
+                                <div class="sector">
+                                    <h4>Green Chemicals</h4>
+                                    <span class="opportunity-score">4.5/5</span>
+                                    <p>ESG-driven demand surge. Focus on bio-based alternatives, sustainable production processes.</p>
+                                </div>
+                                <div class="sector">
+                                    <h4>Digital Chemical Platforms</h4>
+                                    <span class="opportunity-score">3.9/5</span>
+                                    <p>B2B marketplace opportunities. Supply chain digitization, procurement optimization platforms.</p>
+                                </div>
+                            </div>
+                            <p class="source">Source: Private Equity Survey, Chemical Industry M&A Report, PwC Deals</p>
+                        </section>
+
+                        <section class="section">
+                            <h2>India Resilience Scorecard</h2>
+                            <div class="resilience-scorecard">
+                                <div class="scorecard-item">
+                                    <h4>Manufacturing Capacity</h4>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 70%"></div>
+                                        <span class="score-value">3.5/5</span>
+                                    </div>
+                                    <p>Strong base in pharmaceuticals and basic chemicals, but limited specialty chemical capacity constrains growth potential.</p>
+                                </div>
+                                <div class="scorecard-item">
+                                    <h4>Cost Competitiveness</h4>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 90%"></div>
+                                        <span class="score-value">4.5/5</span>
+                                    </div>
+                                    <p>Significant labor cost advantage and improving energy cost structure provide sustainable competitive positioning.</p>
+                                </div>
+                                <div class="scorecard-item">
+                                    <h4>Infrastructure Quality</h4>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 60%"></div>
+                                        <span class="score-value">3.0/5</span>
+                                    </div>
+                                    <p>Adequate port and transportation infrastructure, but last-mile connectivity and power reliability remain challenges.</p>
+                                </div>
+                                <div class="scorecard-item">
+                                    <h4>Policy Support</h4>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 80%"></div>
+                                        <span class="score-value">4.0/5</span>
+                                    </div>
+                                    <p>Strong government commitment through PLI schemes and infrastructure investment, though regulatory complexity persists.</p>
+                                </div>
+                                <div class="scorecard-item">
+                                    <h4>Innovation Ecosystem</h4>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 65%"></div>
+                                        <span class="score-value">3.2/5</span>
+                                    </div>
+                                    <p>Growing R&D capabilities in pharmaceuticals, but limited presence in advanced materials and specialty chemicals R&D.</p>
+                                </div>
+                            </div>
+                            <p class="source">Source: World Economic Forum Competitiveness Index, EIU Country Risk, proprietary analysis</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
